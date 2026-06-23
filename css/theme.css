@@ -58,10 +58,6 @@
   --plum-veil: radial-gradient(60% 80% at 80% 20%, rgba(138, 95, 168, 0.18), transparent 70%);
 }
 
-/* Guard against any transient horizontal scroll (e.g. pre-reveal split slide
-   on mobile). clip preserves position:sticky, unlike overflow:hidden. */
-html, body { overflow-x: clip; }
-
 /* =============================================
    DECORATIVE LAYER  (Polish Standard)
    ============================================= */
@@ -142,11 +138,14 @@ h1 em, h2 em, h3 em,
 }
 @media (min-width: 768px) { .hero--image { min-height: 86vh; max-height: 760px; } }
 
-/* Gold-edged glass tick pills on the dark hero */
+/* Hero tick pills: clean frosted glass with a refined gold hairline + gold tick.
+   (Keeps the framework's frosted look; just warms the edge to brand gold.) */
 .hero--image .hero__ticks li {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(220, 192, 120, 0.45);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(220, 192, 120, 0.55);
   color: #FBF6FC;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* =============================================
@@ -217,8 +216,10 @@ h1 em, h2 em, h3 em,
 .contact-form-wrap .card h2,
 .contact-form-card h2 { font-size: var(--text-xl); }
 
-/* Inner-page headers on the cosmic image: gold eyebrow, plum-tinted overlay */
-.page-header--image .section-label { color: var(--color-secondary-light); }
+/* Inner-page headers on the cosmic image: keep the framework's white eyebrow
+   pill (its gold-brown text reads cleanly on white); just suppress the
+   section-label underline flourish, which doesn't belong inside a pill. */
+.page-header--image .section-label::after { display: none; }
 .page-header--image::before {
   background: linear-gradient(180deg, rgba(20,11,28,0.78) 0%, rgba(28,16,40,0.66) 100%);
 }
