@@ -1,0 +1,231 @@
+/* =============================================
+   THEME: Sovereign Plum & Gold
+   Transformative Healing Therapy — Hayley Stoker
+   Spiritual counselling · shadow work · soul alchemy
+   Baseline: Deep Plum (Style 9) — deepened to aubergine
+   + a true metallic gold co-accent (from the phoenix logo)
+   Font Pairing: Playfair Display + Inter · Aesthetic: Luxe
+   ============================================= */
+
+/* --- Google Fonts (Playfair w/ italic for emphasis) --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Theme Variables --- */
+:root {
+  /* Colour Palette — royal plum anchor + metallic gold co-accent + aubergine darks */
+  --color-primary: #6B4C7D;
+  --color-primary-light: #8E6CA3;
+  --color-primary-dark: #4A3260;
+  --color-secondary: #C2A24E;        /* metallic gold — from the phoenix */
+  --color-secondary-light: #DCC078;
+  --color-secondary-dark: #997A30;
+  --color-accent: #8A5FA8;           /* amethyst pop (numbers, info-band) */
+  --color-accent-light: #B193C8;
+
+  --color-bg: #FBF8FB;
+  --color-bg-alt: #F1EAF3;
+  --color-bg-dark: #241531;          /* deep aubergine — dramatic dark sections + hero */
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F7F1F9;
+
+  --color-text: #342A3D;
+  --color-text-light: #6B5E78;
+  --color-text-inverse: #FBF6FC;
+  --color-text-heading: #241531;
+
+  --color-border: #E0D7E6;
+  --color-border-light: #ECE5EF;
+
+  --color-success: #6B8B6F;
+  --color-error: #C45B5B;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Heading sizes — Playfair runs large; keep elegant, not shouty (H1<=46, H2<=32) */
+  --text-h1-desktop: 2.875rem;       /* 46px */
+  --text-h2-desktop: 2rem;           /* 32px */
+  --text-h3-desktop: 1.5rem;         /* 24px */
+
+  /* Aesthetic dial — LUXE (premium sanctuary feel) */
+  --aesthetic-radius: 18px;
+  --aesthetic-shadow-card: 0 10px 34px rgba(36, 21, 49, 0.10), 0 2px 8px rgba(36, 21, 49, 0.05);
+  --aesthetic-border-width: 1px;
+
+  /* Decorative tokens */
+  --gold-gradient: linear-gradient(120deg, #B98F32 0%, #E6C977 45%, #B98F32 100%);
+  --plum-veil: radial-gradient(60% 80% at 80% 20%, rgba(138, 95, 168, 0.18), transparent 70%);
+}
+
+/* Guard against any transient horizontal scroll (e.g. pre-reveal split slide
+   on mobile). clip preserves position:sticky, unlike overflow:hidden. */
+html, body { overflow-x: clip; }
+
+/* =============================================
+   DECORATIVE LAYER  (Polish Standard)
+   ============================================= */
+
+/* Headings: italic Playfair emphasis in a warm gold for key words.
+   Use <em> inside a heading to highlight a word. */
+/* On light sections, emphasis reads as elegant plum italic (gold on white
+   muddies to mustard). Gold emphasis is reserved for dark sections + .text-gold. */
+h1 em, h2 em, h3 em,
+.hero__heading em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+.section--dark h2 em,
+.section--dark h3 em,
+.hero--image .hero__heading em,
+.cta-banner em {
+  color: var(--color-secondary-light);
+}
+
+/* Gold gradient text utility (for the homepage tagline word, etc.) */
+.text-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-secondary-dark);
+}
+
+/* Section-label: hairline gold flourish beneath the eyebrow */
+.section-label {
+  position: relative;
+  color: var(--color-secondary-dark);
+}
+.section-label::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-top: 7px;
+  background: var(--gold-gradient);
+  border-radius: 2px;
+}
+.text-center .section-label::after { margin-left: auto; margin-right: auto; }
+.section--dark .section-label { color: var(--color-secondary-light); }
+
+/* Soft radial gold/plum glow on dark sections + heroes */
+.section--dark,
+.hero--image,
+.cta-banner {
+  position: relative;
+  isolation: isolate;
+}
+.section--dark::before,
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(50% 70% at 15% 10%, rgba(194, 162, 78, 0.14), transparent 60%),
+    radial-gradient(55% 80% at 90% 90%, rgba(138, 95, 168, 0.20), transparent 65%);
+  pointer-events: none;
+}
+
+/* =============================================
+   HERO — dark cosmic, left-aligned text
+   Override the component overlay with a plum-tinted gradient: darkens the
+   (left) text side for contrast, lets the gold sacred-geometry on the right
+   of the image stay visible.
+   ============================================= */
+.hero--image { background-color: var(--color-bg-dark); min-height: 560px; }
+.hero--image::before {
+  background:
+    linear-gradient(95deg, rgba(18,10,26,0.92) 0%, rgba(20,11,28,0.74) 42%, rgba(28,16,40,0.42) 70%, rgba(28,16,40,0.26) 100%),
+    radial-gradient(60% 90% at 14% 35%, rgba(138,95,168,0.18), transparent 62%);
+}
+@media (min-width: 768px) { .hero--image { min-height: 86vh; max-height: 760px; } }
+
+/* Gold-edged glass tick pills on the dark hero */
+.hero--image .hero__ticks li {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(220, 192, 120, 0.45);
+  color: #FBF6FC;
+}
+
+/* =============================================
+   COMPONENT POLISH
+   ============================================= */
+
+/* Cards lift a touch more on hover (luxe) */
+.card { transition: transform var(--transition-base), box-shadow var(--transition-base); }
+.card:hover { transform: translateY(-4px); }
+
+/* Card icons: plum→gold gradient wash for a richer feel */
+.card__icon {
+  background: linear-gradient(140deg, rgba(107, 76, 125, 0.12), rgba(194, 162, 78, 0.16));
+  color: var(--color-primary);
+}
+.section--alt .card__icon {
+  background: linear-gradient(140deg, rgba(107, 76, 125, 0.10), rgba(194, 162, 78, 0.14));
+}
+
+/* Overlay cards (home pillars) — gold title accent on hover */
+.overlay-card__title { font-family: var(--font-heading); }
+
+/* Pull-quote: gold mark + Playfair italic */
+.blockquote--pull,
+.blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+}
+.blockquote--pull { color: var(--color-primary-dark); }
+
+/* Testimonial quotes serif, attribution sans (per build rules) */
+.testimonial__quote { font-family: var(--font-body); }
+.testimonial__author, .testimonial__detail { font-family: var(--font-heading); }
+.text-center .testimonial__stars,
+.testimonial--standalone .testimonial__stars { justify-content: center; }
+.testimonial__stars svg { fill: var(--color-secondary); }
+
+/* Highlight box — gold heading rule */
+.highlight-box { border-left: 3px solid var(--color-secondary); }
+
+/* Quals list ticks in gold */
+.quals-list li svg, .checklist li svg { color: var(--color-secondary-dark); }
+
+/* Pricing featured card — gold ring */
+.pricing-card--featured { border-color: var(--color-secondary); }
+
+/* CTA banner: plum→aubergine gradient with gold accents */
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-bg-dark) 100%);
+  color: var(--color-text-inverse);
+}
+.cta-banner h2 { color: #FFFFFF; }
+.cta-banner p { color: rgba(251, 246, 252, 0.9); }
+
+/* Steps / approach numbers in gold */
+.step__number, .approach-item__number, .process-spine__num {
+  color: var(--color-secondary-dark);
+}
+
+/* Portrait images taller on desktop (intro / about) */
+@media (min-width: 768px) {
+  .intro__image-wrap,
+  .about-hero__image-wrap { min-height: 540px; }
+}
+
+/* Contact page headings capped (from Style 9 baseline) */
+.contact-info h2,
+.contact-form-wrap .card h2,
+.contact-form-card h2 { font-size: var(--text-xl); }
+
+/* Inner-page headers on the cosmic image: gold eyebrow, plum-tinted overlay */
+.page-header--image .section-label { color: var(--color-secondary-light); }
+.page-header--image::before {
+  background: linear-gradient(180deg, rgba(20,11,28,0.78) 0%, rgba(28,16,40,0.66) 100%);
+}
+
+/* Two-tier nav: gold hairline under the brand bar */
+.nav--two-tier .nav__top { border-bottom: 1px solid var(--color-border-light); }
+.nav__contact-item svg { color: var(--color-secondary-dark); }
+
+/* Transparent-dark nav (homepage over cosmic hero) — gold contact icons stay legible */
+.nav--transparent-dark .nav__contact-item svg { color: var(--color-secondary-light); }
