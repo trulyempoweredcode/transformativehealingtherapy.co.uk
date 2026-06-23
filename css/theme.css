@@ -200,10 +200,19 @@ h1 em, h2 em, h3 em,
 .cta-banner h2 { color: #FFFFFF; }
 .cta-banner p { color: rgba(251, 246, 252, 0.9); }
 
-/* Steps / approach numbers in gold */
-.step__number, .approach-item__number, .process-spine__num {
-  color: var(--color-secondary-dark);
+/* Step / process / approach numbers sit in FILLED plum circles, so keep the
+   framework's white numerals — never tint them gold (kills contrast). */
+
+/* The cta-mid-banner is a coloured CTA band, but the framework alternation
+   safety-net counts it as a plain .section and wrongly tints the NEXT content
+   section, creating two same-background sections in a row. Reset the section
+   after a cta-mid-banner to the base background so alternation reads cleanly. */
+main > .section.cta-mid-banner + .section:not(.section--alt):not(.section--dark):not(.cta-banner) {
+  background-color: var(--color-bg) !important;
 }
+
+/* Menu/section group headings that follow a treatment-list need top breathing room. */
+.treatment-list + h2 { margin-top: var(--space-3xl); }
 
 /* Portrait images taller on desktop (intro / about) */
 @media (min-width: 768px) {
