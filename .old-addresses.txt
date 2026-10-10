@@ -1,0 +1,13 @@
+# Every address this site has had. The weekly old-address guard (Ai-Editor scripts/address_guard.py)
+# checks each one still works and forwards it if not. Add lines freely; never remove one.
+# archive: done
+/
+/about.html
+/services.html
+/sovereign-soul-architecture.html
+/how-i-work.html
+/pricing.html
+/container-timeline.html
+/connect.html
+/cookies-policy.html
+/privacy.html
