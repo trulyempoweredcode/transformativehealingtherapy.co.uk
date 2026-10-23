@@ -264,7 +264,7 @@ strong {
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  border-radius: var(--aesthetic-radius);
+  border-radius: var(--btn-radius, var(--aesthetic-radius)); /* v1.7.20 hook: pill buttons */
   transition: all var(--transition-base);
   text-decoration: none;
   border: calc(var(--aesthetic-border-width) + 1px) solid transparent;
@@ -301,13 +301,14 @@ strong {
 
 .btn--accent {
   background-color: var(--color-secondary);
-  color: var(--color-text-inverse);
+  color: var(--btn-accent-text, var(--color-text-inverse)); /* v1.7.20: dark ink on a light accent */
   border-color: var(--color-secondary);
 }
 
 .btn--accent:hover {
   background-color: var(--color-secondary-dark);
   border-color: var(--color-secondary-dark);
+  color: var(--btn-accent-hover-text, var(--color-text-inverse));
 }
 
 .btn--block {
